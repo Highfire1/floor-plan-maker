@@ -485,7 +485,7 @@ const FURNITURE_SIZES = {
     'round-table-8-chairs': { width: 250, height: 250 },
     'stage': { width: 100, height: 100 },
     'lectern': { width: 40, height: 60 },
-    'drape': { width: 100, height: 10 },
+    'drape': { width: 200, height: 20 },
     'chair': { width: 45, height: 40 }
 };
 
