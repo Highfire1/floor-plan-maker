@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#main-area {
+    flex: 1;
+    background-color: #f0f0f0;
+    overflow: hidden; /* Change from auto to hidden */
+    position: relative; /* Add this */
+}
+
+#floor-plan-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: move; /* Add this line to indicate draggable area */
+}
+
+#floor-plan {
+    position: absolute;
+    background-color: white;
+    transform-origin: top left;
+    user-select: none; /* Add this line to prevent text selection while dragging */
+}
+
+#zoom-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#zoom-controls button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 5px;
+    padding: 0;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+#zoom-controls button:hover {
+    background-color: #f0f0f0;
+}
+
+#sidebar {
+    width: 250px;
+    background-color: #e0e0e0;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar > div {
+    padding: 10px;
+}
+
+#room-selection {
+    margin-bottom: 10px;
+}
+
+#room-dropdown {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+header h1 {
+    padding: 10px;
+}
+
+#sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#sidebar-header a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#sidebar-header a:hover {
+    text-decoration: underline;
+}
+
+#sidebar-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#sidebar-actions button {
+    width: 48%;
+}
+
+#furniture-options {
+    padding: 10px;
+}
+
+.furniture-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer; /* This line was already here */
+    transition: background-color 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.furniture-item:hover {
+    background-color: #f0f0f0;
+    cursor: grab; /* Add this line to change the cursor on hover */
+}
+
+.furniture-item:active {
+    cursor: grabbing; /* Add this line to change the cursor when clicking */
+}
+
+.furniture-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+    pointer-events: none;
+}
+
+.furniture-item span {
+    text-align: center;
+    font-size: 14px;
+}
+
+.furniture {
+    cursor: move; /* Fallback for older browsers */
+    cursor: grab;
+}
+
+.furniture:active {
+    cursor: grabbing;
+}
+
+.rotate-button {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 20px;
+    height: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+.delete-button {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4136;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+#grouping-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#grouping-actions button {
+    width: 48%;
+    padding: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#grouping-actions button:hover {
+    background-color: #45a049;
+}
+
+#sidebar-header button,
+#sidebar-actions button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sidebar-header button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#sidebar-header button:hover {
+    background-color: #45a049;
+}
+
+#sidebar-actions button {
+    background-color: #008CBA;
+    color: white;
+}
+
+#sidebar-actions button:hover {
+    background-color: #007B9E;
+}
+
+#sidebar-header, #sidebar-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#sidebar-header button, #sidebar-actions button {
+    flex: 1;
+    margin: 0 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+}
+
+#save-list {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#save-name {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-buttons button {
+    flex: 1;
+    margin: 0 5px;
+}

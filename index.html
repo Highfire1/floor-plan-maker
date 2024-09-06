@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langara Floor Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Langara Floor Planner</h1>
+    </header>
+    <main>
+        <div id="main-area">
+            <div id="floor-plan-container">
+                <div id="floor-plan"></div>
+                <div id="zoom-controls">
+                    <button id="zoom-in">+</button>
+                    <button id="zoom-out">-</button>
+                </div>
+            </div>
+        </div>
+        <aside id="sidebar">
+            <div id="sidebar-header">
+                <button id="contact-btn" onclick="window.open('https://andersontseng.ca', '_blank')">Contact</button>
+                <button id="github-btn" onclick="window.open('#', '_blank')">GitHub</button>
+            </div>
+            <div id="sidebar-actions">
+                <button id="save-btn" class="action-btn">Save</button>
+                <button id="load-btn" class="action-btn">Load</button>
+            </div>
+            <div id="room-selection">
+                <h2>Select a Room</h2>
+                <select id="room-dropdown">
+                    <option value="TGallery">T Gallery</option>
+                    <!-- <option value="L224">L224</option> -->
+                    <option value="disabled" disabled>Looking for more? Get in touch above!</option>
+                </select>
+            </div>
+            <div id="furniture-options">
+                <h2>Furniture</h2>
+                <div class="furniture-item">
+                    <img src="assets/furniture/table.png" alt="Table">
+                    <span>Table</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/table-2-chairs.png" alt="Table with 2 Chairs">
+                    <span>Table 2 Chairs</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/table-4-chairs.png" alt="Table with 4 Chairs">
+                    <span>Table 4 Chairs</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/round-table.png" alt="Round Table">
+                    <span>Round Table</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/round-table-8-chairs.png" alt="Round Table with 8 Chairs">
+                    <span>Round Table 8 Chairs</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/stage.png" alt="Stage">
+                    <span>Stage</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/lectern.png" alt="Lectern">
+                    <span>Lectern</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/drape.png" alt="Drape">
+                    <span>Drape</span>
+                </div>
+                <div class="furniture-item">
+                    <img src="assets/furniture/chair.png" alt="Chair">
+                    <span>Chair</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+    <div id="save-load-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Load Floor Plan</h2>
+            <select id="save-list" size="5"></select>
+            <input type="text" id="save-name" placeholder="Enter save name">
+            <div class="modal-buttons">
+                <button id="open-save-btn">Open</button>
+                <button id="delete-save-btn">Delete</button>
+                <button id="new-save-btn">New Save</button>
+                <button id="close-modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
