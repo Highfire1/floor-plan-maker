@@ -38,6 +38,7 @@ const MIN_ZOOM_FACTOR = 0.5;  // Minimum zoom is 50% of the initial fit
 const MAX_ZOOM_FACTOR = 5;    // Maximum zoom is 500% of the initial fit
 
 let initialScale;
+let isCurrentSetupSaved = true;
 
 function initFloorPlan() {
     const floorPlanContainer = document.getElementById('floor-plan-container');
@@ -86,6 +87,22 @@ function initFloorPlan() {
 
     // Add event listener for zooming
     floorPlanContainer.addEventListener('wheel', handleZoom);
+
+    // Add event listener for beforeunload
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // Load saved plan if available
+    const savedData = localStorage.getItem('floorPlanData');
+    if (savedData) {
+        loadPlan(false);
+    }
+}
+
+function handleBeforeUnload(event) {
+    if (!isCurrentSetupSaved) {
+        event.preventDefault();
+        event.returnValue = '';
+    }
 }
 
 function handleZoom(e) {
@@ -178,6 +195,7 @@ function spawnFurniture(type) {
     const centerY = (rect.height / 2 - parseFloat(floorPlan.style.top)) / currentScale;
     
     addFurniture(type, centerX, centerY);
+    isCurrentSetupSaved = false;
 }
 
 function addFurniture(type, x, y) {
@@ -242,6 +260,7 @@ function makeFurnitureDraggable(furniture) {
 
         startX = e.clientX;
         startY = e.clientY;
+        isCurrentSetupSaved = false;
     });
 
     document.addEventListener('mouseup', () => {
@@ -301,6 +320,7 @@ function addRotateButton(furniture) {
             item.dataset.rotation = newRotation;
         });
         startAngle = angle;
+        isCurrentSetupSaved = false;
     });
 
     document.addEventListener('mouseup', () => {
@@ -326,6 +346,7 @@ function deleteFurniture(furniture) {
     selectedFurniture = selectedFurniture.filter(item => item !== furniture);
     updateRotateButton();
     updateDeleteButton();
+    isCurrentSetupSaved = false;
 }
 
 function updateRotateButton() {
@@ -374,9 +395,9 @@ function savePlan() {
 
     localStorage.setItem('floorPlanData', JSON.stringify(planData));
     alert('Floor plan saved successfully!');
+    isCurrentSetupSaved = true;
 }
-
-function loadPlan() {
+function loadPlan(showAlert = true) {
     const savedData = localStorage.getItem('floorPlanData');
     if (savedData) {
         const planData = JSON.parse(savedData);
@@ -416,8 +437,10 @@ function loadPlan() {
             addDeleteButton(furniture);
         });
 
-        alert('Floor plan loaded successfully!');
-    } else {
+        if (showAlert) {
+            alert('Floor plan loaded successfully!');
+        }
+    } else if (showAlert) {
         alert('No saved floor plan found!');
     }
 }
