@@ -473,7 +473,8 @@ const FURNITURE_TYPES = [
     'stage', 
     'lectern',
     'drape',
-    'chair'
+    'chair',
+    'ruler'
 ];
 
 // Define furniture sizes (in cm)
@@ -486,7 +487,8 @@ const FURNITURE_SIZES = {
     'stage': { width: 100, height: 100 },
     'lectern': { width: 40, height: 60 },
     'drape': { width: 200, height: 20 },
-    'chair': { width: 45, height: 40 }
+    'chair': { width: 45, height: 40 },
+    'ruler': { width: 1000, height: 100 }
 };
 
 function initFurnitureOptions() {
